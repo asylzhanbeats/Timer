@@ -15,7 +15,9 @@ class TimerTableViewCell: UITableViewCell {
     var delegate: TimerTableViewCellDelegate?
     private let timerLabel : UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
+        label.textColor = .gray
+      
+        label.textAlignment = .right
         return label
     }()
     private let timerName : UILabel = {
@@ -25,7 +27,7 @@ class TimerTableViewCell: UITableViewCell {
     static let identifier = "TimerTableViewCell"
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        timerLabel.font = .systemFont(ofSize: timerName.font.pointSize, weight: .light)
         contentView.addSubview(timerLabel)
         contentView.addSubview(timerName)
     }
@@ -33,7 +35,7 @@ class TimerTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         timerName.frame = CGRect(x: 20, y: 0, width: contentView.frame.size.width/3, height: contentView.frame.size.height-2)
-        timerLabel.frame = CGRect(x: contentView.frame.size.width/3*2 , y: 0, width: contentView.frame.size.width/3, height: contentView.frame.size.height-2)
+        timerLabel.frame = CGRect(x: contentView.frame.size.width/3*2 , y: 0, width: contentView.frame.size.width/3-20, height: contentView.frame.size.height-2)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
