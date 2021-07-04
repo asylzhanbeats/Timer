@@ -142,10 +142,13 @@ class ViewController: UIViewController {
             pos += 1
         }
         print("new id: \(id)")
+        tableView.beginUpdates()
         data.insert(newModel, at: pos)
+        tableView.insertRows(at: [IndexPath(row: pos, section: 0)], with: .middle)
+        tableView.endUpdates()
         nameTextField.text = nil
         secondsTextField.text = nil
-        tableView.reloadData()
+     
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -185,8 +188,10 @@ extension ViewController: TimerTableViewCellDelegate {
         for model in data {
             if model.id == index {
                 print("Found")
+                tableView.beginUpdates()
                 data.remove(at: pos)
-                tableView.reloadData()
+                tableView.deleteRows(at: [IndexPath(row: pos, section: 0)], with: .fade)
+                tableView.endUpdates()
                 break
             }
             pos += 1
