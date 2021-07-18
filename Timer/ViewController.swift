@@ -161,11 +161,12 @@ class ViewController: UIViewController {
         secondView.frame =  CGRect(x: 0, y: topView.bottom+20, width: width, height: 52)
         secondLabel.frame =  CGRect(x: 20, y: 10 ,width: width-20, height: 42)
         secondLine.frame =  CGRect(x: 0, y:secondLabel.bottom, width: width, height: 1)
-        
+       
         nameTextField.frame = CGRect(x: 20, y: secondView.bottom+15, width: width-130, height: 42)
         secondsTextField.frame = CGRect(x: 20, y: nameTextField.bottom+10, width: width-130, height: 42)
         button.frame = CGRect(x: 10, y: secondsTextField.bottom + 20, width: width-30, height: 52)
         tableView.frame = CGRect(x: 0, y: button.bottom+50, width: width, height: height-secondsTextField.frame.origin.y-20)
+        
     }
 }
 

@@ -10,7 +10,7 @@ protocol TimerTableViewCellDelegate {
     func removeFinishedTimer(with index: String)
 }
 class TimerTableViewCell: UITableViewCell {
-    
+    var prev: String?
     var timer: Timer?
     var delegate: TimerTableViewCellDelegate?
     private let timerLabel : UILabel = {
@@ -30,6 +30,7 @@ class TimerTableViewCell: UITableViewCell {
         timerLabel.font = .systemFont(ofSize: timerName.font.pointSize, weight: .light)
         contentView.addSubview(timerLabel)
         contentView.addSubview(timerName)
+        contentView.backgroundColor = .red
     }
    
     override func layoutSubviews() {
@@ -47,12 +48,14 @@ class TimerTableViewCell: UITableViewCell {
         super.prepareForReuse()
         self.timer?.invalidate()
         self.timer = nil
-        self.timerLabel.text = nil
         self.timerName.text = nil
+        self.timerLabel.text = nil
     }
     public func configure(with model: TimerModel){
         
         if timer == nil {
+            timerName.text = model.name
+            timerLabel.text = "\(TimerTableViewCell.calculate(model: model).timeRemainingFormatted())" 
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {[weak self]timer in
                 guard let strongSelf = self else {return}
                 let newtime = TimerTableViewCell.calculate(model: model)
@@ -64,7 +67,7 @@ class TimerTableViewCell: UITableViewCell {
                 }
             })
         }
-        timerName.text = model.name
+       
     }
 }
 
