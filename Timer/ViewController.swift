@@ -153,8 +153,9 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.register(TimerTableViewCell.self, forCellReuseIdentifier: TimerTableViewCell.identifier)
-        let width = view.frame.size.width
-        let height = view.frame.size.height
+        let width = view.width
+        let height = view.height
+        
         topView.frame =  CGRect(x: 0, y: 0, width: width, height: height/7)
         titleLabel.frame =  CGRect(x: 0, y: topView.height/2, width: width, height: 52)
         
